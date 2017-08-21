@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,11 +41,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComplexTypes\UserSession.cs" />
+    <Compile Include="EfModels\Address.cs" />
+    <Compile Include="EfModels\Basket.cs" />
+    <Compile Include="EfModels\Category.cs" />
+    <Compile Include="EfModels\Order.cs" />
+    <Compile Include="EfModels\Product.cs" />
+    <Compile Include="EfModels\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\CategoryViewModel.cs" />
+    <Compile Include="ViewModel\OrderItemModel.cs" />
+    <Compile Include="ViewModel\OrderSummaryViewModel.cs" />
+    <Compile Include="ViewModel\OrderViewModel.cs" />
+    <Compile Include="ViewModel\ProductDetailViewModel.cs" />
+    <Compile Include="ViewModel\ShoppingCartItemModel.cs" />
+    <Compile Include="ViewModel\ShoppingCartViewModel.cs" />
+    <Compile Include="ViewModel\SignUpUserViewModel.cs" />
+    <Compile Include="ViewModel\UserDetailViewModel.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ComplexTypes\" />
-    <Folder Include="EfModels\" />
+    <ProjectReference Include="..\MyECommerce.Core\MyECommerce.Core.csproj">
+      <Project>{E1F10EAB-E164-4CE8-96FE-39B3D8049DFB}</Project>
+      <Name>MyECommerce.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

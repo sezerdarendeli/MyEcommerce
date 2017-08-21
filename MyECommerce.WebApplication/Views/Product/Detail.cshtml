@@ -1,0 +1,40 @@
+﻿@model ProductDetailViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+
+    <div class="col-sm-9 ">
+        <div class="product-details">
+            <!--product-details-->
+            <div class="col-sm-5">
+                <div class="view-product">
+                    <img src="/@System.Configuration.ConfigurationManager.AppSettings["Website.ProductImage.Path"].ToString()@Model.Product.ImageUrl" alt="" />
+                </div>
+                <div id="similar-product" class="carousel slide" data-ride="carousel">
+
+                </div>
+          
+            </div><!--/product-details-->
+            <div class="col-sm-7">
+                <div class="product-information">
+                    <!--/product-information-->
+                    <img src="images/product-details/new.jpg" class="newarrival" alt="" />
+                    <h2>@Model.Product.Name</h2>
+                    <p>Web ID: @Model.Product.Id</p>
+                    <img src="images/product-details/rating.png" alt="" />
+                    <span>
+                        <span>@Model.Product.Price TL </span>
+                        @*<input type="text" value="3" />*@
+                        <button type="button" onclick="addToCart(@Model.Product.Id)" class="btn btn-fefault cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            Sepete Ekle
+                        </button>
+                    </span>
+
+                    <p><b>Marka:</b> @Model.Product.BrandName</p>
+                </div><!--/product-information-->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+
+    <!--category--->
+
+    @{  Html.RenderAction("List", "Menu");
+    }
+    <!-- Category  -->
+
+    <div class="col-sm-9 padding-right">
+        <div class="category-tab">
+            <h2>@Model.CategoryName</h2>
+
+            <div class="tab-content">
+                @foreach (var item in Model.ProductList)
+                {
+                    <div class="tab-pane fade active in">
+                        <div class="col-sm-3">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <a href="urun/@item.UrlName">
+                                            <img src="/@System.Configuration.ConfigurationManager.AppSettings["Website.ProductImage.Path"].ToString()@item.ImageUrl" alt="" />
+                                        </a>
+                                        <h2>@item.Price TL</h2>
+                                        <p>@item.Name</p>
+                                        <a onclick="addToCart(@item.Id)" href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Sepete Ekle</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

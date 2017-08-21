@@ -1,0 +1,49 @@
+﻿@model  SignUpUserViewModel
+
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="signup-form">
+                <!--sign up form-->
+                <h2>Üye Gİrişi</h2>
+                <input type="email" class="form-control" id="userName" placeholder="Email Adres" />
+
+                <input type="password" class="form-control" id="password" placeholder="Şifre" />
+
+                <a onclick="login();" href="#" class="btn btn-primary" role="button">Üye Girişi</a>
+                <label id="message"></label>
+            </div><!--/sign up form-->
+        </div>
+    </div>
+</section>
+<script>
+
+    function login() {
+ 
+               var username = $('#userName').val();
+               var password = $('#password').val();
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json",
+                    url: '@Url.Action("SignIn","Account")',
+                    data: JSON.stringify({ password: password,userName:username}),
+                    success: function (data) {
+                        if (data.Process == true)
+                        {
+                            alert(data.Message);
+                            window.location.href = "/";
+                        }
+                        else {
+
+                            $('#message').text(data.Message);
+                        }
+                    }
+                });
+
+            }
+</script>

@@ -1,0 +1,34 @@
+﻿
+@{
+
+    Layout = null;
+}
+
+<thead>
+    <tr>
+        <th>Ürün Adı</th>
+        <th>Fiyat</th>
+        <th>Marka</th>
+        <th>Para Birimi</th>
+        <th></th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@item.Name</td>
+            <td>@item.Price </td>
+            <td>@item.BrandName</td>
+            <td>@item.CurrencyCode</td>
+            <td>
+                <a onclick="deleteProduct(@item.Id);" class="btn btn-warning">Sil</a>
+
+            </td>
+        </tr>
+    }
+</tbody>
+
+
+

@@ -1,0 +1,30 @@
+﻿@model  SignUpUserViewModel
+
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="signup-form">
+                <!--sign up form-->
+                <h2>Kayıt Ol</h2>
+                @using (Html.BeginForm("SignUp", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-group", role = "form" }))
+                {
+
+                    @Html.TextBoxFor(model => model.User.UserName, new { @class = "form-control", @placeholder = "Ad" })
+                    @Html.ValidationMessageFor(model => model.User.UserName)
+                    @Html.TextBoxFor(model => model.User.EMailAdress, new { @class = "form-control", @placeholder = "EMail Adres" })
+                    @Html.ValidationMessageFor(model => model.User.UserName)
+                    @Html.TextBoxFor(model => model.User.Password, new { @class = "form-control", @type = "password" ,@placeholder="Şifre"})
+                    @Html.ValidationMessageFor(model => model.User.Password)
+
+                    <input type="submit" value="Üye Ol" />
+
+                }
+
+            </div><!--/sign up form-->
+        </div>
+    </div>
+</section>

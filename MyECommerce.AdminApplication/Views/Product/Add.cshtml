@@ -1,0 +1,104 @@
+﻿@model Product
+@{
+    ViewBag.Title = "Kategori Ekleme";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>@ViewBag.Title</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form method="post" class="form-horizontal"
+                          action="/Product/Add">
+                        @Html.HiddenFor(model => model.Id)
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Ürün Adı</label>
+
+                            <div class="col-sm-10">
+                                @{
+                                    if (Model == null)
+                                    {
+                                        <input type="text" class="form-control" name="Name">
+                                    }
+                                   
+                                }
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> Fiyat</label>
+
+                            <div class="col-sm-10">
+                                @{
+                                    if (Model == null)
+                                    {
+                                        <input type="text" class="form-control" name="Price">
+                                    }
+
+                                }
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> Url </label>
+
+                            <div class="col-sm-10">
+                                @{
+                                    if (Model == null)
+                                    {
+                                        <input type="text" class="form-control" name="UrlName">
+                                    }
+
+                                }
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> Marka Adı</label>
+
+                            <div class="col-sm-10">
+                                @{
+                                    if (Model == null)
+                                    {
+                                        <input type="text" class="form-control" name="BrandName">
+                                    }
+
+                                }
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> Kategori</label>
+
+                            <div class="col-sm-10">
+                              @Html.DropDownList("CategoryId", "Seçiniz")
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <a class="btn btn-white" href="@Url.Action("List", "Product")">Vazgeç</a>
+                                <button class="btn btn-primary" type="submit">Kaydet</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

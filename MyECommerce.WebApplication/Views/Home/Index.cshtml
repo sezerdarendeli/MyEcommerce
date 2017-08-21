@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+
+    <!--category--->
+
+    @{  Html.RenderAction("List", "Menu");
+    }
+    <!-- Category  -->
+
+    <div class="col-sm-9 padding-right">
+
+        <div class="category-tab">
+          
+            @{  Html.RenderAction("HomeProductList", "Product");
+            }
+        </div>
+
+
+
+    </div>
+</div>

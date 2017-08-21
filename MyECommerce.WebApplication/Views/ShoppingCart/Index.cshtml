@@ -1,0 +1,139 @@
+﻿@model ShoppingCartViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section id="cart_items">
+    <div class="container">
+
+
+        <div class="table-responsive cart_info">
+            @if (Model.IsSuccess == false)
+            {
+                <b>@Model.Message</b>
+            }
+            else
+            {
+                if (Model.ShoppingCartList.Count == 0)
+                {
+                    <b>Sepetinizde ürün bulunmamaktadır.</b>
+                }
+                else
+                {
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr class="cart_menu">
+                                <td class="image">Ürün</td>
+                                <td class="description">Ürün Adı </td>
+                                <td class="price">Fiyat</td>
+                                <td class="quantity">Adet</td>
+                                <td class="total">Toplam Fiyat</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ShoppingCartList)
+                    {
+                                <tr>
+                                    <td class="cart_product">
+                                        <a href=""><img style="width: 40px;" src="/@System.Configuration.ConfigurationManager.AppSettings["Website.ProductImage.Path"].ToString()@item.ProductImageUrl" alt=""></a>
+                                    </td>
+                                    <td class="cart_description">
+                                        <h4><a href="">@item.ProductName</a></h4>
+                                        <p>Web ID: @item.ProductId</p>
+                                    </td>
+                                    <td class="cart_price">
+                                        <p>@item.Price TL</p>
+                                    </td>
+                                    <td class="cart_quantity">
+                                        <div class="cart_quantity_button">
+                                            <input type="number" style="width: 40px;" id="quantity_@item.ProductId" value="@item.Quantity" />
+                                        </div>
+                                    </td>
+                                    <td class="cart_total">
+                                        <p class="cart_total_price">@item.ItemTotalPrice TL</p>
+                                    </td>
+                                    <td class="cart_delete">
+                                        <a class="cart_quantity_delete" href="#" onclick="procces(@item.ProductId,'DELETE')"><i class="fa fa-times"></i></a>
+                                    </td>
+                                    <td class="">
+                                        <a class="" href="#" onclick="procces(@item.ProductId,'UPDATE')"><i class="fa fa-times">Güncelle</i></a>
+                                    </td>
+
+                                </tr>
+
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6"></td>
+                                <td><b id="subTotal">Toplam Tutar : @Model.SubTotal TL </b></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Seçilen Adres : @Model.Address
+                                </td>
+                            </tr>
+                            <tr>
+                                @{  UserSession userSession = (UserSession)Session["UserSession"];}
+                                @if (userSession.User != null)
+                                {
+                                    <td colspan="7" align="right"><a href="#" onclick="orderComplete();" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-shopping-cart"></i> Siparişi Tamamla</a></td>
+                                }
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                                        }
+                                    }
+
+
+        </div>
+
+    </div>
+</section>
+<script>
+
+    function orderComplete() {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            url: '@Url.Action("PostOrderSummary", "ShoppingCart")',
+            success: function (data) {
+                if (data.Process == true) {
+                    alert(data.Message +' Anasayfaya yönlendirileceksiniz.');
+                    window.location.href = "/";
+                }
+                else {
+
+                    $('#message').text(data.Message);
+                }
+            }
+        });
+
+    }
+
+
+    function procces(id, type) {
+        var quantity = $('#quantity_' + id).val();
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            url: '@Url.Action("BasketItemProcess", "ShoppingCart")',
+            data: JSON.stringify({ productId: id, itemType: type, itemQuantity: quantity }),
+            success: function (data) {
+                if (data.Process == true) {
+                    alert(data.Message);
+                    window.location.href = "/sepet";//TODO:Datayı partialview e göndererek refresh etmek gerekirk.
+                }
+                else {
+
+                    $('#message').text(data.Message);
+                }
+            }
+        });
+    }
+</script>
