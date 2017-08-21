@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace MyECommerce.Business.Concrete
 {
-    public class ICategoryManager : ICategoryService
+    public class CategoryManager : ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
 
-        public ICategoryManager(ICategoryRepository categoryRepository)
+        public CategoryManager(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }

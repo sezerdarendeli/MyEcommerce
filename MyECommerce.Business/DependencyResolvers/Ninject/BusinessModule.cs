@@ -12,7 +12,7 @@ namespace MyECommerce.Business.DependencyResolvers.Ninject
         {
             ////Service Manager
             //Service
-            Bind<ICategoryService>().To<ICategoryManager>().InSingletonScope();
+            Bind<ICategoryService>().To<CategoryManager>().InSingletonScope();
             Bind<IProductService>().To<ProductManager>().InSingletonScope();
             Bind<IBasketService>().To<BasketManeger>().InSingletonScope();
             Bind<IUsersService>().To<UsersManeger>().InSingletonScope();

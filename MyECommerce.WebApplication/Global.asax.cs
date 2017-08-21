@@ -1,8 +1,11 @@
-﻿using MyECommerce.WebApplication.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using MyECommerce.Business.Abstract;
+using MyECommerce.Business.Concrete;
+using MyECommerce.DataLayer.Abstract;
+using MyECommerce.DataLayer.Concrete;
+using MyECommerce.WebApplication.Infrastructure;
+using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -15,6 +18,8 @@ namespace MyECommerce.WebApplication
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+
+
         }
     }
 }

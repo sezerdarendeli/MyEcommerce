@@ -262,6 +262,10 @@
       <Project>{E1F10EAB-E164-4CE8-96FE-39B3D8049DFB}</Project>
       <Name>MyECommerce.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyECommerce.DataLayer\MyECommerce.DataLayer.csproj">
+      <Project>{F7621DAE-5093-485E-98B3-90853D9DB522}</Project>
+      <Name>MyECommerce.DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyECommerce.Entities\MyECommerce.Entities.csproj">
       <Project>{B98A972D-5A44-486F-95B9-FB2FBF896CED}</Project>
       <Name>MyECommerce.Entities</Name>
