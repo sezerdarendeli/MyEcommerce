@@ -1,11 +1,4 @@
-﻿using Autofac;
-using Autofac.Integration.Mvc;
-using MyECommerce.Business.Abstract;
-using MyECommerce.Business.Concrete;
-using MyECommerce.DataLayer.Abstract;
-using MyECommerce.DataLayer.Concrete;
-using MyECommerce.WebApplication.Infrastructure;
-using System.Reflection;
+﻿using MyECommerce.WebApplication.Infrastructure;
 using System.Web.Mvc;
 using System.Web.Routing;
 
