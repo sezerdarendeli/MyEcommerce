@@ -21,7 +21,7 @@ namespace MyECommerce.WebApplication.Controllers
             _categoryService = categoryService;
         }
 
-        public ActionResult Detail(string urlName)
+        public ActionResult Detail(string urlName)//Ürün detay action'ı
         {
             var productViewModel = new ProductDetailViewModel();
 
@@ -40,7 +40,7 @@ namespace MyECommerce.WebApplication.Controllers
         public ActionResult  HomeProductList()
         {
 
-            var productList = _productService.GetAll().Take(12).ToList();
+            var productList = _productService.GetAll().Take(12).ToList();//Anasayfa ürün listesi.
 
             return View(productList);
         }

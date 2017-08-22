@@ -91,18 +91,18 @@ namespace MyECommerce.WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult BasketItemProcess(int productId, string itemType, int itemQuantity)
+        public ActionResult BasketItemProcess(int productId, string itemType, int itemQuantity)// Sepet sayfasında Update ve Delete işlemini yapan method
         {
             var shoppingcartViewModel = new ShoppingCartViewModel();
             var shoppingCartItemList = new List<ShoppingCartItemModel>();
 
             var basket = _basketService.GetAll(e => e.BasketId == UserSession.BasketId && e.ProductId == e.ProductId).FirstOrDefault();
-            if (itemType == "UPDATE")
+            if (itemType == "UPDATE")//itemType UPDATE ise  gönderilen quantity 'i ilgili satır için update edilir.
             {
                 basket.Quantity = itemQuantity;
                 _basketService.Update(basket);
             }
-            else if (itemType == "DELETE")
+            else if (itemType == "DELETE")//itemType DELETE ise gönderilen satır silinir.
             {
                 _basketService.Delete(basket);
             }
@@ -110,7 +110,7 @@ namespace MyECommerce.WebApplication.Controllers
             var basketItemList = _basketService.GetAll(e => e.BasketId == UserSession.BasketId);
 
             double subTotal = 0;
-            foreach (var basketItem in basketItemList)
+            foreach (var basketItem in basketItemList)//Sepet içindeki ürünler basketItemList list ine set edilir.
             {
                 var product = _productService.GetProductById(basketItem.ProductId);
 
@@ -135,7 +135,7 @@ namespace MyECommerce.WebApplication.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index()//Sepet sayfasının get action'ı
         {
             var shoppingcartViewModel = new ShoppingCartViewModel();
 
@@ -190,10 +190,6 @@ namespace MyECommerce.WebApplication.Controllers
 
         #region Sipariş Onay
      
-      
-
-
-
         [HttpPost]
         public ActionResult PostOrderSummary()
         {

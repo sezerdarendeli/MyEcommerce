@@ -18,7 +18,7 @@ namespace MyECommerce.WebApplication.Controllers
             _productService = productService;
         }
         // GET: Product
-        public ActionResult List(string categoryUrlName)
+        public ActionResult List(string categoryUrlName)//Url 'e göre kategori sayfasının içeriğini getiren get action'ı
         {
 
             var categoryViewModel = new CategoryViewModel();

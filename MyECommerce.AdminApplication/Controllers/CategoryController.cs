@@ -17,9 +17,9 @@ namespace MyECommerce.AdminApplication.Controllers
             _categoryService = categoryService;
         }
 
-        public ActionResult List()
+        public ActionResult List()//Kategori Listesinin get action'ı
         {
-            return View(_categoryService.GetAll().OrderBy(o => o.Id));
+            return View(_categoryService.GetAll().OrderBy(o => o.Id));//Tüm kategori listesi get View 'e gönderilir.
         }
 
         public ActionResult Add()
@@ -33,7 +33,7 @@ namespace MyECommerce.AdminApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Category category)
+        public ActionResult Add(Category category)//Yeni kategori ekleyen Action 
         {
             ViewBag.ParentID = new SelectList(items: _categoryService.GetAll(),
                                 dataValueField: "Id",
@@ -59,7 +59,7 @@ namespace MyECommerce.AdminApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteCategory(int categoryId)
+        public ActionResult DeleteCategory(int categoryId)// Kategori silen action
         {
             var category = _categoryService.GetCategoryById(categoryId);
             _categoryService.Delete(category);

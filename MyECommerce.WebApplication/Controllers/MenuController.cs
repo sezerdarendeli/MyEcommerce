@@ -18,7 +18,7 @@ namespace MyECommerce.WebApplication.Controllers
         }
 
         [HttpGet]
-        public ActionResult List()
+        public ActionResult List()//Menüyü oluşturan action.
         {
 
             var categoryList = _categoryService.GetAll().ToList();

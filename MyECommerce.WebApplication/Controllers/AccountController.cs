@@ -24,7 +24,7 @@ namespace MyECommerce.WebApplication.Controllers
             }
 
             [HttpGet]
-            public ActionResult SignUp()
+            public ActionResult SignUp()//Kayıt ol sayfasının get action'ı
             {
                 var signUpUserViewModel = new SignUpUserViewModel();
 
@@ -35,7 +35,7 @@ namespace MyECommerce.WebApplication.Controllers
             }
 
             [HttpGet]
-            public ActionResult SignOut()
+            public ActionResult SignOut()//Kullanıcı çıkış Action'ı
             {
                 UserSession.User = null;
                 UserSession = null;
@@ -43,7 +43,7 @@ namespace MyECommerce.WebApplication.Controllers
             }
 
             [HttpPost]
-            public ActionResult SignIn(string userName, string password)
+            public ActionResult SignIn(string userName, string password)//Üye girişi Action'ı 
             {
                 var generateHash = new GenerateHash();
                 password = generateHash.Encrypt(password, ConfigurationManager.AppSettings["HashKey"].ToString());
@@ -52,7 +52,7 @@ namespace MyECommerce.WebApplication.Controllers
                                        e.Password == password &&
                                        e.EMailAdress == userName);
 
-                if (user != null)
+                if (user != null)//Eğer user classı boş ise servisten değer gelmemiş başarısız yönlendirmesi yapılır.
                 {
                     UserSession.User = user;
                     return Json(new { Process = true, Message = "Giriş başarıyla yapılmıştır." });
@@ -65,7 +65,7 @@ namespace MyECommerce.WebApplication.Controllers
             }
 
             [HttpGet]
-            public ActionResult SignIn()
+            public ActionResult SignIn()// Üye Girişi sayfası get Action'ı
             {
                 var signUpUserViewModel = new SignUpUserViewModel();
               
@@ -77,7 +77,7 @@ namespace MyECommerce.WebApplication.Controllers
 
 
             [HttpPost]
-            public ActionResult SignUp(SignUpUserViewModel signUpViewModel)
+            public ActionResult SignUp(SignUpUserViewModel signUpViewModel)// Üye ol Post Action'ı
             {
                 var generateHash = new GenerateHash();
 
@@ -86,12 +86,12 @@ namespace MyECommerce.WebApplication.Controllers
                 signUpViewModel.User.CreatedTime = DateTime.Now;
 
 
-                signUpViewModel.User.EMailConfirmed = true; //TODO:EmailVerification eklenince kaldırılacak
-                signUpViewModel.User.Active = true; //TODO:EmailVerification eklenince kaldırılacak
+                signUpViewModel.User.EMailConfirmed = true; 
+                signUpViewModel.User.Active = true; 
 
-                var user = _usersService.Add(signUpViewModel.User);
+                var user = _usersService.Add(signUpViewModel.User);//Kullanıcı servisinin add metodu ile yeni kullanıcı bilgileri set edilir.
 
-                if (user.Id == 0)
+                if (user.Id == 0)//Add metodu dönüşündeki user classında user bilgisi oluştu ise yeni Id bilgisi alır.Eğer almamışsa sayfaya geri dön.
                 {
                     return View(signUpViewModel);
                 }

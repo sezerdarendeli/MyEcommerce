@@ -9,7 +9,7 @@ namespace MyECommerce.WebApplication.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index()//Anasayfa action'ı
         {
             return View();
         }

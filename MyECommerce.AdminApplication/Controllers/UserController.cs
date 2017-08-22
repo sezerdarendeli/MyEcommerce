@@ -22,12 +22,12 @@ namespace MyECommerce.AdminApplication.Controllers
 
         }
 
-        public ActionResult List()
+        public ActionResult List()//Kullanıcı listesini getiren  Action
         {
             return View(_userService.GetAll().OrderBy(o => o.Id));
         }
 
-        //Kullanıcı detay sayfası için UserDetailViewModel'e servisten data çekip modeli dönen servis
+        //Kullanıcı detay sayfası için UserDetailViewModel'e servisten data çekip modeli dönen Action
         public ActionResult Detail(int id)
         {
             UserDetailViewModel model = new UserDetailViewModel();

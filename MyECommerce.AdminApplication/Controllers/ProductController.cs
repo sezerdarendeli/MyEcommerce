@@ -20,13 +20,13 @@ namespace MyECommerce.AdminApplication.Controllers
 
         }
 
-        public ActionResult List()
+        public ActionResult List()//Ürün listesini getiren Action
         {
             return View(_productService.GetAll().OrderBy(o => o.Id));
         }
 
         [HttpPost]
-        public ActionResult DeleteProduct(int productId)
+        public ActionResult DeleteProduct(int productId)// productId parametresine göre silme işlemi yapan Action
         {
             var product = _productService.GetProductById(productId);
             _productService.Delete(product);
@@ -34,7 +34,7 @@ namespace MyECommerce.AdminApplication.Controllers
             return PartialView("_TableList", newproductList);
         }
 
-        public ActionResult Add()
+        public ActionResult Add()//Ürün EKleme Action'ı
         {
             ViewBag.Title = "Ürün Ekle";
 
@@ -45,7 +45,7 @@ namespace MyECommerce.AdminApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Product product)
+        public ActionResult Add(Product product)//Ürün Ekleme Post Action'ı
         {
             ViewBag.CategoryId = new SelectList(items: _categoryService.GetAll(),
                                 dataValueField: "Id",

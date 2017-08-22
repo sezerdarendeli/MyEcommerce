@@ -19,6 +19,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyECommerce.Business", "MyE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyECommerce.WebApplication", "MyECommerce.WebApplication\MyECommerce.WebApplication.csproj", "{639FEF9E-7B3C-48FF-A7E9-A6DC140DA38A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseBackup", "DatabaseBackup", "{65EA07A4-C30C-4AAD-84B8-C52CD14B5322}"
+	ProjectSection(SolutionItems) = preProject
+		DatabaseBackup\MyECommerce.bak = DatabaseBackup\MyECommerce.bak
+		DatabaseBackup\MyECommerceScript.sql = DatabaseBackup\MyECommerceScript.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
